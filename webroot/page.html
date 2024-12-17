@@ -1,0 +1,64 @@
+
+<html lang="en">
+  <head>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta charset="UTF-8" />
+    <title>Scrabble Rush</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body >
+    <div id="playground">
+      <h1 id="timer">00:00</h1>
+      <p id="scoretitle">SCORE</p>
+      <p id="score">0</p>
+      <div class="input-container">
+        <input type="text" class="input-box" id="input1" maxlength="1">
+        <input type="text" class="input-box" id="input2" maxlength="1">
+        <input type="text" class="input-box" id="input3" maxlength="1">
+        <input type="text" class="input-box" id="input4" maxlength="1">
+        <input type="text" class="input-box" id="input5" maxlength="1">
+      </div>
+      <audio id="enter-sound" src="assets/sound/enter.mp3" preload="auto"></audio>
+    <div id="btn">
+    <button class="image-button" id="shuffle">
+      <img src="assets/img/shuffle32.png" alt="Shuffle Image">
+      <audio id="button-sound" src="assets/sound/shuffle.mp3" preload="auto"></audio>
+    </button>
+    </div>
+  </div>
+    <div class="tile-container" id="deck">
+      <div class="tile" id="tile1">
+        <div class="letter" id="letter1"></div>
+        <div class="count" id="count1"></div>
+      </div>
+      <div class="tile" id="tile2">
+        <div class="letter" id="letter2"></div>
+        <div class="count" id="count2"></div>
+      </div>
+      <div class="tile" id="tile3">
+        <div class="letter" id="letter3"></div>
+        <div class="count" id="count3"></div>
+      </div>
+      <div class="tile" id="tile4">
+        <div class="letter" id="letter4"></div>
+        <div class="count" id="count4"></div>
+      </div>
+      <div class="tile" id="tile5">
+        <div class="letter" id="letter5"></div>
+        <div class="count" id="count5"></div>
+      </div>
+      <div class="tile" id="tile6">
+        <div class="letter" id="letter6"></div>
+        <div class="count" id="count6"></div>
+      </div>
+      <div class="tile" id="tile7">
+        <div class="letter" id="letter7"></div>
+        <div class="count" id="count7"></div>
+      </div>
+    </div>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

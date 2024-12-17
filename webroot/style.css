@@ -1,0 +1,130 @@
+body{
+  margin: 0px;
+}
+#timer{
+  font-size: 42px;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: white;
+  text-align:center;
+  font-weight:lighter;
+  letter-spacing: 2px;
+  margin: 0px;
+  padding-top: 10px;
+}
+#scoretitle{
+  color: #417DA3;
+  margin: 0px;
+  font-size: 24px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bolder;
+  color: white;
+  text-align:center;
+  margin-top: 18px;
+}
+#score{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin: 0px;
+  margin-top:2px;
+  font-size: 24px;
+  color: white;
+  text-align:center;
+}
+
+#playground{
+  background-color: #e19751;
+  height: 65vh;
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between input boxes */
+  margin-top: 60px;
+}
+
+#btn{
+  display:flex;
+  justify-content: flex-end;
+}
+.image-button {
+  background-color: #2298E3; /* No background color by default */
+  border: 1px solid #ccc; /* Remove default button border */
+  padding: 0; /* Remove padding */
+  margin-right: 20px;
+  border-radius: 5px;
+  cursor: pointer; /* Make it look clickable */
+  position: relative;
+  bottom:20px;
+  height:45;
+  width: 45;
+}
+
+.image-button img {
+  width: 100%; /* Ensure the image fits the button */
+  height: auto;
+}
+
+.image-button:hover {
+  background-color:#22b9e3; /* Change background on hover */
+}
+
+.image-button:active {
+  background-color: #22b9e3; /* Darker background when pressed */
+}
+
+.input-box {
+  width: 80px;  /* Width of each input box */
+  height: 80px; /* Height of each input box */
+  text-align: center;
+  font-size: 34px;
+  font-weight: bold; 
+  justify-content: left; 
+  align-items:center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-transform: uppercase;  /* Ensure the letter is uppercase */
+}
+
+/* Parent container for tiles */
+.tile-container {
+  display: flex;             /* Use Flexbox to arrange the tiles in a row */
+  gap: 20px;                 /* Space between each tile */
+  justify-content: center;   /* Center the tiles horizontally */
+  align-items: center;       /* Center the tiles vertically */
+  margin: 20px;
+  margin-top: 30px;
+}
+
+/* Parent tile div */
+.tile {
+  width: 70px;                /* Width of the tile (square) */
+  height: 70px;               /* Height of the tile (square) */
+  background-color: #f0e4d7;  /* Light cream color (Scrabble tile background) */
+  border: 2px solid #d3a15c;  /* Brownish border color (typical for Scrabble tiles) */
+  border-radius: 5px;         /* Rounded corners */
+  position: relative;         /* To position the count at the top */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Arial', sans-serif;  /* Font for the letter */
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); /* Optional shadow for a 3D effect */
+}
+
+/* Letter styling */
+.letter {
+  font-size: 34px;             /* Size of the letter */
+  color: #4d2f1d;              /* Dark brown color for the letter */
+  text-transform: uppercase;  /* Ensure the letter is uppercase */
+}
+
+/* Count (score) styling */
+.count {
+  font-size: 11px;             /* Smaller size for the score */
+  color: #4d2f1d;              /* Dark brown color for the count */
+  position: absolute;          /* Position it at the bottom-right corner */
+  top: 2px;                 /* Position 5px from the bottom */
+  right: 4px;                  /* Position 5px from the right */
+}
