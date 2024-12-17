@@ -14,7 +14,6 @@ Players can compete to see who can create the most valid words, challenge their 
 ## Technologies Used
 - **Frontend**: HTML, CSS, JavaScript
 - **Backend/Integration**: Devvit Public API (`@devvit/public-api`)
-- **Timer Management**: JavaScript for managing and controlling the countdown timer
 - **Other Tools**: 
   - TypeScript (for development) 
 
