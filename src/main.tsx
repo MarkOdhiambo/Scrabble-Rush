@@ -90,9 +90,8 @@ Devvit.addCustomPostType({
           height={webviewVisible ? '0%' : '100%'}
           alignment="center middle"
           backgroundColor="#c17540"
-          
         >
-          <text size="xlarge" weight="bold">
+          <text size="xxlarge" weight="bold" alignment="top center" outline="thick">
             SCRABBLE RUSH
           </text>
           <spacer />
@@ -110,7 +109,7 @@ Devvit.addCustomPostType({
             <spacer />
             <hstack>
             <text>
-              1. Objective: Get the most words in 3 minutes to score the highest points.
+              1. Objective: Get the most words in 2:30 minutes to score the highest points.
               </text>
             </hstack>
             <hstack>
@@ -120,16 +119,18 @@ Devvit.addCustomPostType({
             </hstack>
             <hstack>
             <text>
-              3. Bonus: A five-letter word earns a double bonus, doubling its points.
+              3. Bonus: A four-letter word and above earns a double bonus, doubling its points.
               </text>
             </hstack>
+            <spacer/>
+            <spacer/>
             <hstack>
-              <text size="medium">Current counter: {counter ?? ''}</text>
+              <text size="medium">Current Score: {counter ?? ''}</text>
             </hstack>
           </vstack>
           <spacer />
           <spacer />
-          <button onPress={onShowWebviewClick}>PLAY</button>
+          <button onPress={onShowWebviewClick} icon='play' size='large'></button>
           
         </vstack>
         <vstack grow={webviewVisible} height={webviewVisible ? '100%' : '0%'}>

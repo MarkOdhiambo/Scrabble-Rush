@@ -1,6 +1,33 @@
+
 body{
   margin: 0px;
 }
+/* Animation for text change */
+.bonus-attained {
+  color: rgb(42, 151, 234);  /* Color change when bonus is attained */
+  font-size: 2.5rem;  /* Increase font size */
+  transform: scale(1.2);  /* Slightly scale the text */
+}
+
+/* Flashing animation for emphasis */
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Apply the flashing animation when bonus is attained */
+.flashing {
+  animation: flash 1s infinite; /* Flash every second */
+}    /* Animation for text change */
+
+
 #timer{
   font-size: 42px;
   font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -31,7 +58,8 @@ body{
 }
 
 #playground{
-  background-color: #e19751;
+  background: linear-gradient(to bottom, #fcb97b, #d08454);
+  /* background-color: #e19751; */
   height: 65vh;
 }
 

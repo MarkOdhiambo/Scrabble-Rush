@@ -1,7 +1,4 @@
 
-
-
-  
 class App {
   constructor() {
     const shuffle = document.querySelector('#shuffle');
@@ -24,11 +21,15 @@ class App {
 
     const sound = document.getElementById('button-sound');
     const enter = document.getElementById('enter-sound');
+    const audioPlayer = document.getElementById('audioPlayer');
+
     let scoreVal = 0;
 
     const letters = [letter1, letter2, letter3, letter4, letter5, letter6, letter7];
     const counts = [count1, count2, count3, count4, count5, count6, count7];
     let tileArr=[];
+
+    let playmode=true;
 
     const vowels = ['a', 'e', 'i', 'o', 'u'];
     const consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'];
@@ -56,6 +57,9 @@ class App {
     inputs.forEach((input, index) => {
       // Handle input for each field (focus on the next input when a character is entered)
       input.addEventListener('input', () => {
+        if(playmode==true){
+          audioPlayer.play();
+        }
         if (input.value.length === 1 && index < inputs.length - 1) {
           inputs[index + 1].focus();
         }
@@ -63,7 +67,7 @@ class App {
 
       // Handle Enter key event for collecting the values
       input.addEventListener('keydown', (event) => {
-        
+        if(playmode==true){
         // Check if Enter key was pressed
         if (event.key === "Enter") {
           const inputValues = [];
@@ -75,7 +79,16 @@ class App {
 
           // Removing blank spaces from the array.
           const cleanInput = inputValues.filter(item => item);
-          //console.log(cleanInput);
+          const inputlength=cleanInput.length;
+          let bonus=false;
+          if(inputlength>=4)
+          {
+            bonus=true;
+          }else{
+            bonus=false;
+          }
+
+          //console.log(bonus);
           
           // Making word from array.
           const wordFormed = cleanInput.join('');
@@ -101,10 +114,18 @@ class App {
             if(isValidWord(wordFormed))
               {
             let currCount=arrayCount(cleanInput);
-            scoreVal+=currCount;
-            //console.log(scoreVal);
-            score.textContent = `${scoreVal}`;
-            getRandomTiles();
+            if(bonus==true){
+              let bonuscount=currCount*2;
+              scoreVal+=bonuscount;
+              score.textContent = `${scoreVal}`;
+              showBonusAttained();
+              getRandomTiles();
+            }else if(bonus==false){
+              scoreVal+=currCount;
+              //console.log(scoreVal);
+              score.textContent = `${scoreVal}`;
+              getRandomTiles();
+            }
             }
             else{
               console.log("Word doesn't exist.")
@@ -124,7 +145,7 @@ class App {
           // test if the tileArr and input
  
         }
-
+        }
         // Handle Backspace key event for deleting values
         if (event.key === "Backspace") {
           if (input.value === "") {
@@ -137,21 +158,42 @@ class App {
       });
     });
 
+    // Function to change text and animate
+    function showBonusAttained() {
+
+      // Add animation class to trigger the visual effects
+      score.classList.add('bonus-attained');
+      score.classList.add('flashing');  // Optional: Add flashing effect for emphasis
+
+      // Remove animation class after a short delay to reset for next time
+      setTimeout(() => {
+        score.classList.remove('bonus-attained');
+        score.classList.remove('flashing');
+      }, 2000);  // After 2 seconds, reset the styles
+    }
+
+    let playbool=false;
     // In webroot/app.js
     window.addEventListener('message', (event) => {
       if (event.data.type === 'devvit-message') {
         const { message } = event.data;
         console.log('Received from Devvit:', event);
-        start();
+        if(playbool==false) {
+          start();
+          playbool=true;
+        }
+        
       }
     });
-    async function start() {
+    function start() {
       playGame();
     };
-
+    
     function startTimer(duration, display) {
       var timer = duration, minutes, seconds;
+      
       const clock = setInterval(function () {
+
           minutes = parseInt(timer / 60, 10)
           seconds = parseInt(timer % 60, 10);
   
@@ -159,14 +201,21 @@ class App {
           seconds = seconds < 10 ? "0" + seconds : seconds;
   
           display.textContent = minutes + ":" + seconds;
-  
           if (--timer < 0) {
-              timer = 0;       
-              clearInterval(clock)
+              timer = 0;  
+              playmode=false;     
+              clearInterval(clock)      
+              audioPlayer.pause(); // Pause the current audio
+              //audioPlayer.currentTime = 0; // Reset to the start
+              window.parent?.postMessage(
+                { type: 'setCounter', data: { newCounter: Number(scoreVal) } },
+                '*'
+              );
               // timer = duration; // uncomment this line to reset timer automatically after reaching 0
           }
       }, 1000);
     }
+    
 
     // Function to check if a word can be formed from selected tiles
     function canFormWord(word, tiles) {
@@ -214,16 +263,13 @@ class App {
       return deck;
     }
 
-    // window.onload = function () {
-    //   playGame();
-    // };
-    window.onload = async function() {
+    window.onload = function () {
       playGame();
     };
     
 
     function playGame(){
-      var time = 180, // your time in seconds here
+      var time = 150, // your time in seconds here
       display = document.querySelector('#timer');
       startTimer(time, display);
       getRandomTiles();
